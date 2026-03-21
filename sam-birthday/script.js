@@ -28,7 +28,7 @@ if (revealBtn && messageBox) {
 
     if (!launched) {
       launched = true;
-      revealBtn.textContent = "Message opened ✨";
+      revealBtn.textContent = "Message opened (scroll down)✨";
 
       for (let i = 0; i < 16; i++) {
         setTimeout(spawnIcon, i * 180);
