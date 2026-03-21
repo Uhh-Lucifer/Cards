@@ -40,22 +40,71 @@ if (revealBtn && messageBox) {
 }
 
 const collagePhotos = [
-  "photo1.jpg",
-  "photo2.jpg",
-  "photo3.jpg",
-  "photo4.jpg",
-  "photo5.jpg",
-  "photo6.jpg",
-  "photo7.jpg",
-  "photo8.jpg"
+  { file: "photo1.jpg", x: 50, y: 50 },
+  { file: "photo2.jpg", x: 50, y: 50 },
+  { file: "photo3.jpg", x: 50, y: 50 },
+  { file: "photo4.jpg", x: 50, y: 50 },
+  { file: "photo5.jpg", x: 50, y: 50 },
+  { file: "photo6.jpg", x: 50, y: 50 },
+  { file: "photo7.jpg", x: 50, y: 50 },
+  { file: "photo8.jpg", x: 50, y: 50 }
 ];
 
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function makeImageDraggable(img, photo) {
+  let dragging = false;
+
+  img.style.objectPosition = `${photo.x}% ${photo.y}%`;
+  img.style.cursor = "grab";
+  img.draggable = false;
+
+  img.addEventListener("pointerdown", (event) => {
+    dragging = true;
+    img.setPointerCapture(event.pointerId);
+    img.style.cursor = "grabbing";
+    event.preventDefault();
+  });
+
+  img.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+
+    photo.x = clamp(photo.x - event.movementX * 0.15, 0, 100);
+    photo.y = clamp(photo.y - event.movementY * 0.15, 0, 100);
+    img.style.objectPosition = `${photo.x}% ${photo.y}%`;
+  });
+
+  function stopDragging(event) {
+    if (!dragging) return;
+    dragging = false;
+    img.style.cursor = "grab";
+
+    if (event.pointerId !== undefined) {
+      try {
+        img.releasePointerCapture(event.pointerId);
+      } catch (_) {}
+    }
+
+    console.log(`${photo.file}: x=${photo.x.toFixed(1)}, y=${photo.y.toFixed(1)}`);
+  }
+
+  img.addEventListener("pointerup", stopDragging);
+  img.addEventListener("pointercancel", stopDragging);
+  img.addEventListener("lostpointercapture", () => {
+    dragging = false;
+    img.style.cursor = "grab";
+  });
+}
+
 if (photoGrid) {
-  collagePhotos.forEach((fileName, index) => {
+  collagePhotos.forEach((photo, index) => {
     const img = document.createElement("img");
-    img.src = `assets/photos/${fileName}`;
+    img.src = `assets/photos/${photo.file}`;
     img.alt = `Sam memory ${index + 1}`;
     img.loading = "lazy";
     photoGrid.appendChild(img);
+    makeImageDraggable(img, photo);
   });
 }
