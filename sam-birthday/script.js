@@ -46,7 +46,7 @@ const collagePhotos = [
   { file: "photo4.jpg", x: 50, y: 50 },
   { file: "photo5.jpg", x: 50, y: 50 },
   { file: "photo6.jpg", x: 50, y: 50 },
-  { file: "photo7.jpg", x: 50, y: 50 },
+  { file: "photo7.jpg", x: 50, y: 50 }
 ];
 
 function clamp(value, min, max) {
@@ -83,7 +83,7 @@ function makeImageDraggable(img, photo) {
     if (event.pointerId !== undefined) {
       try {
         img.releasePointerCapture(event.pointerId);
-      } catch (_) {}
+      } catch (error) {}
     }
 
     console.log(`${photo.file}: x=${photo.x.toFixed(1)}, y=${photo.y.toFixed(1)}`);
@@ -103,8 +103,8 @@ if (photoGrid) {
     img.src = `assets/photos/${photo.file}`;
     img.alt = `Sam memory ${index + 1}`;
     img.loading = "lazy";
+    img.decoding = "async";
     photoGrid.appendChild(img);
     makeImageDraggable(img, photo);
   });
 }
-
