@@ -47,7 +47,6 @@ const collagePhotos = [
   { file: "photo5.jpg", x: 50, y: 50 },
   { file: "photo6.jpg", x: 50, y: 50 },
   { file: "photo7.jpg", x: 50, y: 50 },
-  { file: "photo8.jpg", x: 50, y: 50 }
 ];
 
 function clamp(value, min, max) {
