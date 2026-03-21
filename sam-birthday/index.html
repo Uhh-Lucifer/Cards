@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="view-transition" content="same-origin" />
   <title>Happy 30th Birthday, Sam</title>
   <meta name="description" content="A Sinners-themed birthday card for Sam's 30th birthday." />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="landing-page">
   <div class="bg-overlay"></div>
 
-  <main class="card">
-    <p class="eyebrow">A little something for you</p>
-    <h1>Happy 30th Birthday, Sam</h1>
+  <main class="card page-shell">
+    <p class="eyebrow">A little something for Sam</p>
+    <h1 class="hero-title">Happy 30th Birthday, Sam</h1>
     <p class="tagline">Thirty looks dangerously good on you.</p>
 
     <section class="gif-section">
@@ -22,21 +23,22 @@
         class="main-gif"
       />
       <h2>Happy Birthday</h2>
-      <p class="subtext"></p>
+      <p class="subtext">Sinners energy, birthday edition.</p>
     </section>
 
     <section class="actions">
       <button id="revealBtn">Open your birthday message</button>
+      <a class="trust-btn" href="collage.html">Click here. Trust me, bro.</a>
     </section>
 
     <section id="messageBox" class="message hidden">
       <p>
-        Main HOE Sam!!! Happy 30th. You deserve a birthday that is iconic,
+        Sam, happy 30th. You deserve a birthday that is dramatic, iconic,
         unforgettable, and a little bit unholy.
       </p>
       <p>
         May this year bring you big joy, good chaos, elite memories,
-        and main-character energy all year long. :3
+        and main-character energy all year long.
       </p>
     </section>
   </main>
