@@ -148,7 +148,7 @@ button:hover,
   margin: 0 auto;
   padding: 18px 18px 4px;
   border-top: 1px solid var(--line);
-  animation: fadeIn 0.5s ease;
+  animation: fadeInMessage 0.5s ease;
 }
 
 .message p {
@@ -319,7 +319,7 @@ button:hover,
     0 18px 34px rgba(0, 0, 0, 0.28),
     0 6px 0 rgba(109, 31, 31, 0.10);
   z-index: 15;
-  animation: fadeIn 0.22s ease;
+  animation: fadeInBubble 0.22s ease;
   text-align: left;
 }
 
@@ -366,7 +366,18 @@ button:hover,
   }
 }
 
-@keyframes fadeIn {
+@keyframes fadeInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInBubble {
   from {
     opacity: 0;
     transform: translateY(-50%) scale(0.98);
@@ -415,7 +426,7 @@ button:hover,
     border-top: 0;
   }
 
-  @keyframes fadeIn {
+  @keyframes fadeInBubble {
     from {
       opacity: 0;
       transform: translateX(-50%) scale(0.98);
@@ -428,9 +439,25 @@ button:hover,
 }
 
 @media (max-width: 640px) {
+  body {
+    padding: 12px;
+  }
+
   .page-shell,
   .card {
-    padding: 24px 18px 28px;
+    padding: 22px 14px 24px;
+    border-radius: 20px;
+  }
+
+  .eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero-title,
+  h1 {
+    font-size: clamp(1.9rem, 9vw, 3rem);
+    line-height: 1.02;
   }
 
   .tagline,
@@ -439,63 +466,43 @@ button:hover,
     font-size: 1rem;
   }
 
-  button,
-  .trust-btn {
-    width: 100%;
+  .heart-frame {
+    width: min(92vw, 520px);
+  }
+
+  .photo-grid {
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .photo-grid img {
+    border-radius: 10px;
+  }
+
+  .actions {
+    gap: 12px;
   }
 
   .actions-collage .trust-btn.secondary {
     width: auto;
+    min-width: 150px;
   }
 
   .lucifer-button {
-    width: 54px;
-    height: 54px;
+    width: 50px;
+    height: 50px;
   }
 
   .lucifer-img {
-    width: 54px;
+    width: 50px;
   }
 
-  .photo-grid {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    gap: 5px;
-    padding: 10px;
+  .lucifer-bubble {
+    width: min(280px, calc(100vw - 32px));
+    padding: 14px 16px;
   }
 
-  .photo-grid img:nth-child(1) {
-    grid-column: 1 / span 2;
-    grid-row: 1 / span 2;
-  }
-
-  .photo-grid img:nth-child(2) {
-    grid-column: 3 / span 2;
-    grid-row: 1 / span 2;
-  }
-
-  .photo-grid img:nth-child(3) {
-    grid-column: 1 / span 2;
-    grid-row: 3 / span 2;
-  }
-
-  .photo-grid img:nth-child(4) {
-    grid-column: 3 / span 2;
-    grid-row: 3 / span 2;
-  }
-
-  .photo-grid img:nth-child(5) {
-    grid-column: 1 / span 2;
-    grid-row: 5 / span 2;
-  }
-
-  .photo-grid img:nth-child(6) {
-    grid-column: 1 / span 2;
-    grid-row: 7 / span 2;
-  }
-
-  .photo-grid img:nth-child(7) {
-    grid-column: 3 / span 2;
-    grid-row: 7 / span 2;
+  .lucifer-bubble p {
+    font-size: 0.92rem;
   }
 }
