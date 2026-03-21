@@ -112,19 +112,19 @@ if (photoGrid) {
 }
 
 if (luciferButton && luciferBubble) {
-  luciferButton.addEventListener("click", () => {
+  luciferButton.addEventListener("click", (event) => {
+    event.stopPropagation();
     const isHidden = luciferBubble.classList.contains("hidden");
     luciferBubble.classList.toggle("hidden");
     luciferButton.setAttribute("aria-expanded", String(isHidden));
   });
 
-  document.addEventListener("click", (event) => {
-    const clickedInsideButton = luciferButton.contains(event.target);
-    const clickedInsideBubble = luciferBubble.contains(event.target);
+  luciferBubble.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
 
-    if (!clickedInsideButton && !clickedInsideBubble) {
-      luciferBubble.classList.add("hidden");
-      luciferButton.setAttribute("aria-expanded", "false");
-    }
+  document.addEventListener("click", () => {
+    luciferBubble.classList.add("hidden");
+    luciferButton.setAttribute("aria-expanded", "false");
   });
 }
