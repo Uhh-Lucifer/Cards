@@ -108,3 +108,4 @@ if (photoGrid) {
     makeImageDraggable(img, photo);
   });
 }
+
