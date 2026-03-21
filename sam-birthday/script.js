@@ -2,6 +2,8 @@ const revealBtn = document.getElementById("revealBtn");
 const messageBox = document.getElementById("messageBox");
 const floatingIcons = document.getElementById("floatingIcons");
 const photoGrid = document.getElementById("photoGrid");
+const luciferButton = document.getElementById("luciferButton");
+const luciferBubble = document.getElementById("luciferBubble");
 
 let launched = false;
 
@@ -106,5 +108,23 @@ if (photoGrid) {
     img.decoding = "async";
     photoGrid.appendChild(img);
     makeImageDraggable(img, photo);
+  });
+}
+
+if (luciferButton && luciferBubble) {
+  luciferButton.addEventListener("click", () => {
+    const isHidden = luciferBubble.classList.contains("hidden");
+    luciferBubble.classList.toggle("hidden");
+    luciferButton.setAttribute("aria-expanded", String(isHidden));
+  });
+
+  document.addEventListener("click", (event) => {
+    const clickedInsideButton = luciferButton.contains(event.target);
+    const clickedInsideBubble = luciferBubble.contains(event.target);
+
+    if (!clickedInsideButton && !clickedInsideBubble) {
+      luciferBubble.classList.add("hidden");
+      luciferButton.setAttribute("aria-expanded", "false");
+    }
   });
 }
